@@ -1,5 +1,5 @@
 {
-  "name": "Godevcontainer", 
+  "name": "Godevcontainer",
   "build": {
     "dockerfile": "Dockerfile"
   },
@@ -11,7 +11,8 @@
       "extensions": [
         "golang.go",
         "usernamehw.errorlens",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+        "github.vscode-github-actions"
       ]
     }
   },

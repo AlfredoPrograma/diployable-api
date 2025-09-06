@@ -10,7 +10,7 @@ RUN chsh -s $(which zsh) \
   && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Install Go related tooling
-RUN go install golang.org/x/tools/cmd/gopls@latest \
+RUN go install golang.org/x/tools/gopls@latest \
     && go install honnef.co/go/tools/cmd/staticcheck@latest \
     && go install github.com/air-verse/air@latest \
     && go install github.com/pressly/goose/v3/cmd/goose@latest \
