@@ -3,16 +3,13 @@ services:
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
-    environment:
-      - SSH_AUTH_SOCK=/ssh-agent
     volumes:
       - ./:/workspace:cached
-      - ${SSH_AUTH_SOCK}:/ssh-agent
     command: /bin/sh -c "while sleep 1000; do :; done"
   database:
     image: postgres:16
     env_file:
-      - .env.development
+      - .env
     ports:
       - "54321:5432"
     volumes:
