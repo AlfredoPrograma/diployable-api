@@ -1,0 +1,24 @@
+{
+  "name": "Godevcontainer", 
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [
+    8080 // Default API port for webservers
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "usernamehw.errorlens",
+        "redhat.vscode-yaml"
+      ]
+    }
+  },
+  "runArgs": [
+    "-v",
+    "${env:SSH_AUTH_SOCK}:/ssh-agent",
+    "-e",
+    "SSH_AUTH_SOCK=/ssh-agent"
+  ]
+}
