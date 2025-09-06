@@ -1,8 +1,10 @@
 {
-  "name": "Godevcontainer",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+  "name": "diployable-api",
+  "dockerComposeFile": [
+    "../docker-compose.yaml"
+  ],
+  "service": "api",
+  "workspaceFolder": "/workspace",
   "forwardPorts": [
     8080 // Default API port for webservers
   ],
@@ -15,11 +17,5 @@
         "github.vscode-github-actions"
       ]
     }
-  },
-  "runArgs": [
-    "-v",
-    "${env:SSH_AUTH_SOCK}:/ssh-agent",
-    "-e",
-    "SSH_AUTH_SOCK=/ssh-agent"
-  ]
+  }
 }
