@@ -5,6 +5,5 @@ import (
 )
 
 func main() {
-	env := bootstrap.LoadEnv()
-	bootstrap.ConnectDB(env.DbConnectionString)
+	bootstrap.RunApp()
 }
