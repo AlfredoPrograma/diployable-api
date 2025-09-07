@@ -3,17 +3,33 @@ package controllers
 import (
 	"net/http"
 
+	"github.com/AlfredoPrograma/diployable/dtos"
 	"github.com/AlfredoPrograma/diployable/services"
 	"github.com/labstack/echo/v4"
 )
 
 type UsersController interface {
 	GetUserByEmail(c echo.Context) error
+	CreateUser(c echo.Context) error
 	routesLoader
 }
 
 type usersController struct {
 	usersService services.UsersService
+}
+
+func (ctrl usersController) CreateUser(c echo.Context) error {
+	var payload dtos.CreateUserDTO
+
+	if err := c.Bind(&payload); err != nil {
+		return err
+	}
+
+	if err := ctrl.usersService.CreateUser(c.Request().Context(), payload); err != nil {
+		return err
+	}
+
+	return c.NoContent(http.StatusCreated)
 }
 
 func (ctrl usersController) GetUserByEmail(c echo.Context) error {
@@ -28,6 +44,7 @@ func (ctrl usersController) GetUserByEmail(c echo.Context) error {
 }
 
 func (ctrl usersController) LoadRoutes(group *echo.Group) {
+	group.POST("", ctrl.CreateUser)
 	group.GET("/:email", ctrl.GetUserByEmail)
 }
 
