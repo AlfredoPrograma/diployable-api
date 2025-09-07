@@ -14,15 +14,16 @@ func RunApp() {
 	db := ConnectDB(env.DbConnectionString)
 
 	// Initialize services
-	usersService := services.NewUsersService(db)
+	encryptService := services.NewEncryptService(env.EncryptCost)
+	usersService := services.NewUsersService(db, encryptService)
 	// Initialize handlers
 	usersController := controllers.NewUsersController(usersService)
 
 	e := echo.New()
 	e.Use(middleware.AddTrailingSlash())
-
 	apiGroup := e.Group("/api/v1")
 
+	// Controllers routes loading
 	usersController.LoadRoutes(apiGroup.Group("/users"))
 
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%d", env.ApiPort)))

@@ -10,6 +10,7 @@ import (
 // The struct fields are mapped from environment variables using mapstructure tags.
 type Env struct {
 	ApiPort            int    `mapstructure:"API_PORT"`
+	EncryptCost        int    `mapstructure:"ENCRYPT_COST"`
 	DbConnectionString string `mapstructure:"DB_CONNECTION_STRING"`
 }
 
