@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/AlfredoPrograma/diployable/bootstrap"
+)
 
 func main() {
-	fmt.Println("Hello world")
+	env := bootstrap.LoadEnv()
+	fmt.Printf("%#v", env)
 }
